@@ -1,10 +1,10 @@
 #include<iostream>
 #include<fstream>
 #include<cctype>
+#include<vector>
 #include<iomanip>
-#include"BankAccount.h"
-#include"SavingBankAccount.h"
 #include"Client.h"
+#include"SavingBankAccount.cpp"
 using namespace std;
 class BankApplication{
 public:
@@ -13,9 +13,55 @@ public:
 
     }
     bool addClient(){
+        Client client;
+        string name;
+        string address;
+        string phone;
+        int balance;
+       BankAccount *bankaccountptr;
+        cout<<"Please Enter Client Name =======>";
+        cin>>name;
+        client.setName(name);
+        cout<<"Please Enter Client Address =======>";
+        cin>>address;
+        client.setAddress(address);
+        cout<<"Please Enter Client Phone =======>";
+        cin>>phone;
+        client.setPhone(phone);
+            int choice;
+            cout<<"What Type of Account Do You Like? (1) Basic (2) Saving – Type 1 or 2 =========>";
+            cin>>choice;
+            if (choice==1){
+                
+            }
+            else if(choice==2){
+                
+            }
 
+        cout<<"Please Enter the Starting Balance =========>";
+        cin>>balance;
+
+        
+        client.setBalance(balance);
+
+        cout<<"An account was created with ID"<<client.bankaccountptr->getAccountID()<< "and Starting Balance" <<client.bankaccountptr->getBalance()<<" L.E."<<endl;
+        save(client);
     }
-    
+    void save(Client c){
+        
+        cvec.push_back(c);
+    }
+    void display_list(){
+        
+        for(int i=0;i<cvec.size();i++){
+            cout<<"Name: "<<cvec[i].getName()<<endl;
+            cout<<"Address: "<<cvec[i].getAddress()<<endl;
+            cout<<"ID: "<<cvec[i].bankaccountptr->getAccountID()<<i<<"( "<<cvec[i].bankaccountptr->getType()<<" )"<<endl;
+            cout<<"Balance: "<<cvec[i].bankaccountptr->getBalance()<<endl;
+            cout<<"-------------------------------"<<endl;
+
+        }
+    }
     void display(){
         char choice;
     do{
@@ -32,12 +78,11 @@ switch (choice)
 {
 case '1':
  system("CLS");
-// addClient();
-cout<<"addClient()"<<endl;
+addClient();
     break;
 case '2':
  system("CLS");
-// list clients and accounts
+display_list();
 cout<<"list clients and accounts"<<endl;
     break;
 case '3':
@@ -69,5 +114,6 @@ cin.get();
 int main(){
 BankApplication b;
 b.display();
+
 return 0;
 }
